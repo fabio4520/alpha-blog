@@ -1,12 +1,17 @@
 <div id="<%= dom_id article %>">
-  <p>
-    <strong>Title:</strong>
-    <%= article.title %>
-  </p>
+  <h1 class="text-center"> <%= article.title %> </h1>
 
-  <p>
-    <strong>Description:</strong>
-    <%= article.description %>
-  </p>
-
+  <div class="card mb-5 mt-4 shadow rounded text-center">
+      <div class="card-header font-italic">
+        by Fabio Fiestas
+      </div>
+      <div class="card-body">
+        <div class="card-text text-left"><%= simple_format(@article.description) %></div>
+        <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-warning" %>
+        <%= link_to "Delete", article_path(@article), data: { 'turbo-method': :delete, 'turbo-confirm': "Are you sure?" }, class: "btn btn-outline-danger" %>
+      </div>
+      <div class="card-footer text-muted">
+        <small>Created <%= time_ago_in_words(@article.created_at) %> ago, Edited <%= time_ago_in_words(@article.updated_at) %> ago.</small>
+      </div>
+    </div>
 </div>
